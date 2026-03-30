@@ -1,0 +1,12 @@
+<>Sql-day-02
+- filtering and Sorting data
+## To sort data in Ascending and Descending Manner
+### List all the directors of pixar movies (alphabetically), without duplicates
+ select Distinct Director
+ from Movies
+ Order by Director Asc;
+### List the last four Pixar movies released ordered from most recent to least
+ Select Title, year
+ From Movies
+ Order By Year Desc
+ Limit 4 Offset 11;
