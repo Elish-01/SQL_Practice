@@ -2,6 +2,7 @@
 Normally the real world data is often broken down into pieces and stored across multiple orthogonal tables using a process called Database organization
 #Primary key
 Tables that share information about a single entity , need to have a primary key (that identifies the entity across the database)
+#INNER JOIN /JOIN
 We can use JOIN/INNER JOIN statement to combine row data across two different columns using the primary key
 ## QUERY
 Select Column, another_column
@@ -26,3 +27,19 @@ Limit num_limit, offset num_offset;
  On Movie.id= Boxoffice.Movie_id
  Order By Ratings Desc;
 
+#OUTER JOIN
+If two tables have asymmetric data ,then we have to use Left JOIN, RIGHT JOIN, and Full JOIN
+## QUERY
+ Select column, another_column
+ from mytable
+ Left/Right/Full Join another_table
+ On mytable.id= another_table.matching_id
+ Where condition(s)
+ Order By column ASC/DESC
+ Limit num_limit Offset num_offset;
+###Practice Example:-
+List all buildings and distinct employees roles in each building (including empty buildings)
+ Select Distinct Building, name, roles
+ From Building
+ LEFT JOIN employees
+ ON Building.name= employees.building;
