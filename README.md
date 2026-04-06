@@ -20,8 +20,8 @@ To become skilled in Data analysis by concreting the basics of every step.
 
 ## Basic Query using Group By
 
--Select AGG_func(Column_or_expression) As column_description,..
--From mytable
--where constraint_expression
--Group By column;
+- Select AGG_func(Column_or_expression) As column_description,..
+ From mytable
+- where constraint_expression
+- Group By column;
 
