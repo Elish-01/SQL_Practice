@@ -17,3 +17,11 @@ To become skilled in Data analysis by concreting the basics of every step.
 - Where condition(s)
 - Order by column Asc/Desc
 - Limit num_limit Offset num_offset;
+
+## Basic Query using Group By
+
+-Select AGG_func(Column_or_expression) As column_description,..
+-From mytable
+-where constraint_expression
+-Group By column;
+
