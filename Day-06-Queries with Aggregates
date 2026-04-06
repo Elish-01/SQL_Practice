@@ -1,0 +1,44 @@
+#Aggregate Expressions/ Functions
+Allows you to summarize the information of a group of rows of data
+It aggregates the value and show the whole total of something
+
+##QUery
+
+Select AGG_FUNC(column_or_expression) As Aggregate_description, ....
+From mytable
+where constraint_expression;
+
+Some Examples of Aggregate function
+- Count(*), count(column), MIN(column), MAX(column), AVG(column), Sum(column), 
+
+For individual groups of data we can use GROUP BY clause instead of using aggregate function across all the rows.
+
+##Group By
+###Query
+
+Select AGG_Func(column_or_expression) As Aggregate_description,...
+From mytable
+where constraint_expression
+group by column;
+
+* Group by acts by grouping the rows that have same values in the column specified
+
+##Example-1
+Find the longest time that an employee has been at the studio
+
+Select Name, Max(years_employed)
+From employees
+
+##Example-2
+For each role, find the average number of years employed by employees in that role
+
+select role, AVG(Years_employed) As avg_years_employed
+From employees
+Group BY role;
+
+##Example-3
+Find the total number of employee years worked in each building
+
+select building, sum(Years_employed) as Total_employees_years_worked
+from employees
+Group By buildings;
