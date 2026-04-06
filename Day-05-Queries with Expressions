@@ -1,0 +1,22 @@
+#Expressions
+
+Can be used to save time and extra post processing of the result data
+We can use AS keyword when expressions are used in SELECT part of the query, to give a desriptive alias.
+
+##Exapmle-1
+List all the movies and their combined sales in millions of dollars
+
+Select title, (Domestic_sales + International_sales)/ 1000000 As combined sales
+From Movies
+JOIN Boxoffice
+ON Movies.id = Boxoffice.Movies_id
+
+##Example- 2
+List all the movies that were released on even number years
+
+select title, Year
+from Movies
+Where Year % 2= 0;
+*% Operator: -- Returns remainder after the division
+so year % 2= 0 , will return even years like 2002, 1928
+while year % 2= 1, will return odd years only like 1981, 2001
