@@ -1,0 +1,28 @@
+#Data Normalization
+Normally the real world data is often broken down into pieces and stored across multiple orthogonal tables using a process called Database organization
+#Primary key
+Tables that share information about a single entity , need to have a primary key (that identifies the entity across the database)
+We can use JOIN/INNER JOIN statement to combine row data across two different columns using the primary key
+## QUERY
+Select Column, another_column
+From mytable
+INNER JOIN another_table
+On mytable.id = another_table.id
+Where condition(s)
+Order By column ASC/DESC
+Limit num_limit, offset num_offset;
+### Practice Example:-
+1-Show sales number for each movies that did better internationally rather than domestically
+ Select Title, Domestic_sales, International_sales
+ From Movies
+ Inner Join Boxoffice
+ On Movies.id = Boxoffice.Movie_id
+ Where International_sales > Domestic_sales;
+
+2- List all the movies by their rating in descending order
+ Select title, Ratings
+ From Movies
+ Join Boxoffice
+ On Movie.id= Boxoffice.Movie_id
+ Order By Ratings Desc;
+
