@@ -1,0 +1,27 @@
+It's always good to reduce the possibility of NULL values as they need special attention when constructing queries
+They are only appropriate when database need to store incomplete data
+#To test null values in a column
+##Query
+
+Select column, another_column
+from mytable
+Where column is NULL/NOT NULL
+And/or other condition
+And/or ....;
+
+Example 
+Find the name  and role of all employees who have not been assigned to a building
+
+Select name, role, building
+from Employees
+Where building is NULL;
+
+Find the building name that hold no employees
+
+Select Building_name
+from Buildings
+LEFT JOIN employees
+on buildings.name= Building
+where role is NULL;
+
+
