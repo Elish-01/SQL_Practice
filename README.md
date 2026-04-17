@@ -1,4 +1,4 @@
-# SQL practice Day-01
+# SQL practice Note
 
 This repository track my daily SQL learning and practice.
 
