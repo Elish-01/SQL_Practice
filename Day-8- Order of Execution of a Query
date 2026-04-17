@@ -1,0 +1,24 @@
+Let's write a complete query first
+
+- SELECT DISTINCT column, AGG_FUNC (column_or_expression)
+- FROM mytable
+   JOIN another_table
+   ON mytable.column = another_table.column
+- WHERE constraint_expression
+- GROUP BY column
+- HAVING constraint_expression
+- ORDER BY column ASC/DESC
+- LIMIT count OFFSET count;
+
+#Query order of execution
+1: FROM & JOIN
+2: WHERE
+3: GROUP BY
+4: HAVING
+5: SELECT
+6: DISTINCT
+7: ORDER BY 
+8: LIMIT/OFFSET
+
+* GROUP BY clause can only be used if there is aggregate function in the query.
+* Reference aliases in ORDER BY clause.
