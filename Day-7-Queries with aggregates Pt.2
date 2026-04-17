@@ -1,0 +1,30 @@
+we use GROUP BY clause + HAVING claue
+----> to filter grouped rows
+HAVING clause has the same type of constraint written like in WHERE clause
+
+#Qeury
+- SELECT group_by_column, AGG_FUNC (column_expression) AS aggregate_result_alia, ....
+- From mytable
+- WHERE condition
+- GROUP BY column
+- HAVING group_condition;
+
+## Exercise-1
+--> Find the number of Artists in the studio (Without Having clause)
+- SELECT role, count(Name) as number_of_artist
+- FROM Employees
+- WHERE role= 'Artist';
+
+##Exercise-2
+--> Find the number of employees of each role in the studio
+- SELECT role, count(name) AS number_of_employees
+- FROM employees
+- Group by role;
+
+##Exercise- 3
+--> Find the total number of years employed by all engineers
+- SELECT role, sum(Years_Employed)
+- FROM Employees
+- GROUP BY role
+- HAVING role= 'Engineer';
+
