@@ -1,0 +1,17 @@
+#Query
+ -DELETE FROM mytable
+ - WHERE condition;
+* (If you leave out where clause, then whole table will be deleted)
+
+##Practice-Q-1
+This dataset is getting too big.
+Let's remove all the movies released before 2005
+
+- DELETE FROM Movies
+- WHERE year < 2005;
+
+##Practice-Q-2
+Andrew Stanton has also left the studio, so remove all the movies directed by him
+
+- DELETE FROM Movies
+- WHERE Director= "Andrew Stanton";
