@@ -1,0 +1,36 @@
+#What is Schema?
+→ Database schema describes the structure of each table and the datatype that each column of the table can contain.
+  :- for ex. In Movies database , the values in the year column must be - Integer
+                                , the values in the title column must be - String/text in datatype.
+#Inserting New data
+## Query
+  - INSERT INTO mytable
+  - VALUES (value_or_expr, another_value_or_expr, ...),
+           (value_or_expr_2, another_value_or_expr_2, ...)
+
+#When data is incomplete and column supports default values
+ ##Query
+    -INSERT INTO mytable
+    - (column, another_column,...)
+    - (value_or_expr, another_value_or_expr,...),
+  (value_or_expr_2, another_value_or_expr_2, ...),
+        .....;
+
+Example:-
+-INSERT INTO boxoffice
+-(Movie_id, Rating, Sales_in_million)
+-VALUES (1, 9.9, 283742034/1000000)
+
+##Practice _Problem_1
+Q:- Add the studio's new production. Toy story 4 to the list of Movies (You can use any director)
+
+- INSERT INTO Movies
+- VALUES(15, "Toy Story 4", "Brad Bird", 2014, 90)
+
+#Practice_problem_2
+Q:- Toy Story 4 has been released to critical acclaim!
+    It has a rating of 8.7 & made 340 million domestically and 270 million internationally. 
+    Add the record to the BoxOffice table
+
+- INSERT INTO Boxoffice
+- VALUES( 15, 8.7, 340000000, 270000000)
