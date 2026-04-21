@@ -1,0 +1,38 @@
+#Query
+
+CREATE TABLE IF NOT EXIST mytable(
+ column_datatype tableconstraint DEFAULT default_value, another_column_datatype tableconstraint DEFAULT default_value,
+ ....);
+
+#Data Type
+-Integer - Whole number
+-Boolean - 0 & 1
+-Float, Double, real - more precise numerical 
+                      like measurement or fractional values
+-Character,Text, varchar(various character) - text based data type
+-DATE, DATE TIME
+- BLOB- SQL Store binary data in BLOB(opaque, have to store with right metadata)
+
+#Table constraint
+- Primary key:- values in this column are unique
+- AUTOINCREMENT -( for integer values) the value is automatically filled
+- UNIQUE - values have to be unique
+- NOT NULL- the inserted values should not be "NULL"
+- CHECK - this allows you to run more complex expression that allows to check 
+           whether the values inserted are valid
+- Foreign key - a consistency check which ensures that each value in this column corresponds to another value
+                in a column in another table
+
+##EXAMPLE:
+ -CREATE TABLE Movies(
+    id Integer Primary Key,
+    title text,
+    Director text,
+   Year Integer, lengths_minute Integer);
+
+##Practice_Q_1
+create a new table named database with the following columns:
+Name(string), Version(float), Download_count(integer) (no constraint)
+
+ -CREATE TABLE Database (
+ Name string, Version Float, Download_count Integer);
