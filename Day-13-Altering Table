@@ -1,0 +1,30 @@
+Alter Table statement- to update the current table and database schemas
+#Query
+
+  Alter Table mytable
+  ADD column Datatype Optional_table_constraint
+  DEFAULT default_value;
+
+#Removing Column
+
+  Alter table mytable
+  drop column_to_be_deleted;
+
+#Renaming the table
+
+  Alter Table mytable
+  RENAME TO new_table_name;
+
+##Practice_Q-1
+  Add a column named Aspect_ratio with a Float datatype to store the aspect_ratio each movie was released in-
+
+  Alter table Movies
+  ADD Aspect_ratio Float;
+
+  ##Practice_Q-2
+  Add another column named Language with a TEXT data type to store the language that the  movie was released in.
+  Ensure that the default for this language is English.
+
+  Alter Table Movies
+  Add Language Text Default 
+  english;
