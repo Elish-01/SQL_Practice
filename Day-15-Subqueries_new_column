@@ -1,0 +1,40 @@
+* subquery is nothing more than query inside another query
+* we use it to select new column, 
+                      to create a filter,
+                      to create a consolidated source from which to select the data.
+
+#subquery to create a new column
+
+SELECT
+  column 1,
+  column2,
+  (select 
+        ..
+      from table_2
+      group by 1)
+from table_1
+group by 1;
+
+##Practice_Q_1
+If we want to see the number of playlists in the app to which the users added each song
+
+SELECT name,
+  (select count(playlist_id),
+          from playlist_track
+   where playlist_track.track_id= track.track_id) as no_of_playlists
+from track 
+group by 1
+order  by no_of_playlists desc
+limit 50;
+
+##Practice_Q_2
+We want to know the % of tracks of each genre in our database
+
+SELECT genre,
+     round(cast(count(track_id) as float) / count(*) from track),2) as per_of_song
+ from genre
+inner join track on
+genre.genre_id = track.genre_id
+group by 1
+order by 2 desc;
+
