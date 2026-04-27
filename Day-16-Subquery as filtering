@@ -1,0 +1,70 @@
+*The subquery will be in WHERE filter.
+* we can use operators such as IN, <>, =, < & > to filter.
+
+#General Query
+
+SELECT column_1, column_2
+FROM table_1
+WHERE column_1 in
+     (select
+      ....
+     from table_2);
+
+##Practice_Q
+How many customers with at least $100 spend on the store each employee is assigned to?
+Here there are 3 tables:- employee, customer, invoice
+employee(schemas):- employee_id, Last_name, First_name, title,...
+customer(schemas):- customer_id, first_name, Last_name, company,...., support_rep_id
+invoice(schemas):- invoice_id, customer_id, invoice_date, billing_address, billing_city,.., total
+
+→ to find the solution we have to follow 3 steps
+1- we have to find the number of customers for each employee
+2- Then the customers who paid atleast $100 in the store
+3-then the first one will be the main query and the second one will be the subquery in WHERE clause
+
+1-to find the number of customers for each employee
+
+SELECT 
+  employee_id,
+  last_name,
+  count(distinct customer_id) as no_of_customers
+FROM employee
+Inner JOIN customer on
+employee.employee_id = customer.support_rep_id
+GROUP BY 1,2
+ORDER BY 3 DESC;
+
+2-To find which customer paid atleast $100 in the store
+
+SELECT 
+  customer_id,
+  round(sum(total),2) as total
+FROM customer
+INNER JOIN invoice on
+customer.customer_id = invoice.customer_id
+GROUP BY customer_id
+HAVING sum(total) > 100
+ORDER BY 2 DESC;
+
+3-Now to get our needed result(actual query that we need to write-final query)
+ Q:- Find the no of customers with  atleast $100 spend on the store each employee is assigned to ?
+
+SELECT
+  employee_id,
+  last_name,
+  count(distinct customer_id) as no_of_customers
+FROM employee
+INNER JOIN customer ON
+employee.employee_id = customer.support_rep_id
+where customer_id=
+ (select
+     customer_id,
+     round(sum(total),2) as total
+ from customer 
+ inner join invoice on
+ customer.customer_id = invoice.customer_id
+ group by customer_id
+ having sum(total) > 100)
+group by 1,2
+order by 3 DESC;
+
