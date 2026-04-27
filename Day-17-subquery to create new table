@@ -1,0 +1,16 @@
+*this subquery is used to create a new & consolidated dataset from which you can extract data.
+* we use this technique when main query becomes too complex.
+* Also we use it when we have to use new source of data repeatitively for different purposes also.
+
+#Common Query
+SELECT 
+ column_1,
+ column_2,..
+FROM 
+ (select 
+  ...
+  from table-1
+  inner join table_2)
+WHERE column_1 >100;
+
+
