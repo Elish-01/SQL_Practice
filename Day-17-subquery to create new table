@@ -13,4 +13,82 @@ FROM
   inner join table_2)
 WHERE column_1 >100;
 
+##Practice_Q_1
+which users in the USA purchased atleast 50 songs?
 
+SELECT *
+FROM 
+ (Select customer_id,
+         last_name,
+         country,
+         state,
+         count(invoice.customer_id) as no_of_purchases,
+         round(sum(total),2) as total_purchased
+         (select
+               count(invoice_line.track_id) n_tracks
+           from invoice_line
+           inner join invoice on invoice.invoice_id= invoice_line.invoice_id
+         Where invoice.customer_id= customer.customer_id) as count_tracks
+  From customer
+  inner join invoice on customer.customer_id = invoice.invoice_id
+  group by 1,2,3,4
+  order by 6 desc) as new_table
+WHERE new_table.count_tracks >= 50
+and new_table.country= 'USA'
+
+##Practice_Q_2
+find the number of users with atleast 50 songs purchases per state
+
+SELECT state,
+       count(*) 
+ FROM
+      (SELECT
+            customer_id,
+            last_name,
+            country,
+            state,
+            count(invoice.customer_id) as no_of_purchases,
+            round(sum(total),2) as total_purchased,
+            (select 
+                  count(invoice_line.track_id) as n_tracks
+                  from invoice_line
+                  inner join invoice on invoice.invoice_id= invoice_line.invoice_id
+                  where invoice.customer_id= customer.customer_id) as count_tracks
+         FROM customer
+         INNER JOIN invoice on
+         invoice.customer_id= customer.customer_id
+         group by 1,2,3,4
+         order by 6 desc) as new_table
+    where new_table.count_tracks >=50
+    and new_table.country= 'USA'
+    GROUP BY new_table.state
+   order by 2 DESC;
+
+##Practice_Q_3
+to select the top 10 users with the highest average amount of money spent by order
+
+SELECT 
+    customer_id,
+    Last_name,
+    round(total_purchased/ no_of_purchases, 2) as avg_purchase
+FROM
+  (select 
+       customer_id,
+       Last_name,
+       country,
+       state,
+       count(invoice.customer_id) as no_of_purchase,
+       round(sum(total),2) as total_purchased
+       select(
+             count(invoice_line.track_id) as count_tracks
+             from invoice_line
+             Inner join invoice on invoice.invoice_id= invoice_line.invoice_id
+             where invoice.customer_id= customer.customer_id) 
+    from customer
+    inner join invoice on 
+    invoice.customer_id= customer.customer_id
+    group by 1,2,3,4
+    order by 6 Desc) as new_table
+ order by 3 desc
+limit 10;
+   
