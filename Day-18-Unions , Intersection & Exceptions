@@ -1,0 +1,24 @@
+#Common Query
+SELECT column, another_column
+FROM mytable
+UNION ALL/ UNION/ INTERSECTION/ EXCEPT
+SELECT other_column, yet_another_column
+FROM another_table
+ORDER BY column DESC
+LIMIT n;
+*(These clause are used when you have data in different tables that can't be joined or processed)
+
+##UNION ALL
+- to append the result of one query to another assuming that they have same column count, order and data type.
+
+##UNION
+- duplicate rows between the tables will be removed from the result.
+
+##INTERSECTION
+- it ensures that only rows that are identical in both results are returned.
+
+##EXCEPT
+- it ensures that the rows from the first result that are not in the second are returned
+- EXCEPT operator is query case-sensitive
+
+*(Both except and intersection discard duplicates)
