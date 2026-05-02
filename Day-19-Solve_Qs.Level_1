@@ -1,0 +1,67 @@
+Table:- Netflix_titles_nov_2019 (uploaded)
+
+#LEVEL-1 (filtering and basic Query)
+1 → Show all movies
+     -select title, release_year, duration, rating
+     -From netflix_titles_nov_2019
+     -Where type= 'Movie';
+
+2 → Show all TV Shows
+     - SELECT title, release_year, duration, rating
+     - FROM netflix_titles_nov_2019
+     - WHERE type= 'TV Show';
+
+3 → Find all content released after 2018
+    - SELECT *
+    - FROM netflix_titles_nov_2019
+    - WHERE released_year > 2018;
+
+4 → Find content from India
+    - SELECT title, country, release_year, type, duration, rating
+    - FROM netflix_titles_nov_2019
+    - WHERE country LIKE '%India%';
+
+5 → Find content from USA released after 2015
+    - SELECT title, type, release_year, duration, rating
+    - FROM netflix_titles_nov_2019
+    - WHERE country LIKE '%United States%' 
+      AND release_year > 2015;
+
+6 → Show only title and country
+    - SELECT title, country
+    - FROM netflix_titles_nov_2019;
+
+7 → Count total number of records
+    - SELECT count(*) as total
+    - From netflix_titles_nov_2019;
+
+8 → Count total number of movies
+    - SELECT count(*) as total_movies
+    - FROM netflix_titles_nov_2019
+    - WHERE type = 'Movie';
+
+9 → Count total no. of TV Shows
+    - SELECT count(*) as total_tv_shows
+    - FROM netflix_titles_nov_2019
+    - WHERE type = 'TV Show';
+
+10 → Get distinct list of countries
+    - SELECT DISTINCT country
+    - FROM netflix_titles_nov_2019; --still it will show country in one cell not split more than one country in an individual cell.
+
+11 → To check distribution year wise.
+   - SELECT release_year,
+            COUNT(*) as total
+   - FROM netflix_titles_nov_2019
+   - WHERE release_year is not NULL
+   - GROUP BY release_year
+   - ORDER BY release_year DESC;
+
+12 → IF you want cleaner output, no nulls.
+    - SELECT DISTINCT country
+    - FROM netflix_titles_nov_2019
+    - WHERE country is NOT NULL;
+
+
+
+
