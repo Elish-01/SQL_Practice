@@ -1,0 +1,36 @@
+LEVEL-2 (SORTING & LIMITING)
+
+1- Show latest 10 releases
+   - SELECT title, type, country, release_year, rating, duration
+   - FROM netflix_titles_nov_2019
+   - ORDER BY release_year
+   - LIMIT 10;
+
+2 - Show oldest 10 movies
+   - SELECT title, type, country, release_year, rating, duration
+   - FROM netflix_titles_nov_2019
+   - WHERE type= 'Movie'
+   - ORDER BY release_year ASC
+   - Limit 10;
+
+3- Sort all content by release_year descending
+   - SELECT title, type, country, release_year, rating, duration
+   - FROM netflix_titles_nov_2019
+   - ORDER BY release_year DESC;
+
+4 - Get top 5 newest TV Shows
+    - SELECT title, country, release_year, duration, rating
+    - FROM netflix_titles_nov_2019
+    - WHERE type= 'TV Show'
+    - ORDER BY release_year DESC
+    - LIMIT 5;
+
+5 - Show top 10 Indian Movies sorted by year
+    - SELECT title, release_year, rating, duration
+    - FROM netflix_titles_nov_2019
+    - WHERE country LIKE '%India%' 
+       AND type= 'Movie'
+    - ORDER BY release_year DESC
+    - LIMIT 10;
+
+
