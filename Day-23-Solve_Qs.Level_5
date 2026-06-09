@@ -1,0 +1,35 @@
+#STRING + PATTERN
+
+##Q-1/ Find titles containing "Love"
+
+ SELECT title
+ FROM netflix_titles_nov_2019
+ WHERE title LIKE '%Love%'
+     OR (for case insensitive)
+ SELECT title
+ FROM netflix_titles_nov_2019
+ WHERE LOWER(title) LIKE '%Love%';
+
+##Q-2/ Find titles starting with 'The'
+
+ SELECT title
+ FROM netflix_titles_nov_2019
+ WHERE title LIKE 'The%';
+
+##Q-3/ Find titles ending with 'Story'
+
+ SELECT title
+ FROM netflix_titles_nov_2019
+ WHERE title LIKE '%Story';
+
+##Q-4/ find content where country contains "United"
+
+ SELECT *
+ FROM netflix_titles_nov_2019
+ WHERE Country LIKE '%United%';
+
+##Q-5/ Count how many titles contain "Life"
+
+ SELECT count(*) as total
+ FROM netflix_titles_nov_2019
+ WHERE title LIKE '%Life%';
