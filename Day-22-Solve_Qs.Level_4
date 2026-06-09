@@ -1,0 +1,44 @@
+#GROUP BY + HAVING
+
+##Q-1/countries with more than 50 Shows
+
+ SELECT country, count(*) as no_of_shows
+ FROM netflix_titles_nov_2019
+ WHERE country is not NULL
+ GROUP BY country
+ HAVING count(*) > 50
+ ORDER BY no_of_shows DESC;
+
+##Q-2/ Ratings with more than 100 entries
+
+ SELECT rating, count(*) as total
+ FROM netflix_titles_nov_2019
+ WHERE rating is not NULL
+ GROUP BY rating
+ HAVING count(*) >100
+ ORDER BY total DESC;
+
+##Q-3/ Count Movies Per year
+
+ SELECT release_year, count(*) as total
+ FROM netflix_titles_nov_2019
+ WHERE release_year is not NULL 
+ AND type= 'Movie'
+ GROUP BY release_year;
+
+##Q-4/ Find years with more than 200 releases
+
+ SELECT release_year, count(*) as total
+ FROM netflix_titles_nov_2019
+ WHERE release_year is not NULL
+ GROUP BY release_year
+ HAVING count(*) > 200
+ ORDER BY total DESC;
+
+##Q-5/ Average release_year Per country
+
+ SELECT country, AVG(release_year) as average
+ FROM netflix_titles_nov_2019
+ WHERE country is not NULL
+ GROUP BY country
+ ORDER BY average DESC;
