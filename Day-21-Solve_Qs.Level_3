@@ -1,0 +1,59 @@
+#Aggregation (Core Analyst Skills)
+
+##Q-1/ Count Content Per country
+
+ SELECT country, count(*)
+ FROM netflix_titles_nov_2019
+ GROUP BY country;
+     OR
+ SELECT country, count(*) as total
+ FROM netflix_titles_nov_2019
+ WHERE country is not NULL
+ GROUP BY country
+ ORDER BY total DESC;
+
+##Q-2/ Count content per type
+
+ SELECT type, count(*) 
+ FROM netflix_titles_nov_2019
+ GROUP BY type;
+
+##Q-3/ Average release year
+
+ SELECT AVG(release_year)
+ FROM netflix_titles_nov_2019
+
+##Q-4/ Maximum release_year
+
+ SELECT MAX(release_year)
+ FROM netlfix_titles_nov_year
+
+##Q-5/ Content from the maximum release_year
+
+ SELECT *
+ FROM netflix_titles_nov_2019
+ WHERE release_year = (
+  SELECT max(release_year)
+  FROM netflix_titles_nov_2019);
+
+##Q-6/ Minimum release_year
+
+ SELECT MIN(release_year)
+ FROM netflix_titles_nov_2019
+
+##Q-7/ Count content per rating
+
+ SELECT rating, count(*) as total
+ FROM netflix_titles_nov_2019
+ GROUP BY rating
+
+##Q-8/ Find most common rating
+
+ SELECT rating, count(*) as total
+ FROM netflix_titles_nov_2019
+ WHERE rating is NOT NULL
+ GROUP BY rating
+ ORDER BY total DESC
+ LIMIT 1;
+
+
