@@ -1,0 +1,52 @@
+#Intermediate Thinking
+
+##Q-1/ Find movies released after average release year
+
+ SELECT title, country, release_year
+ FROM netflix_titles_nov_2019
+ WHERE type= 'Movie' AND
+ release_year > (
+   SELECT avg(release_year)
+   FROM netflix_titles_nov_2019
+   WHERE type= 'Movie');
+
+##Q-2/ Find oldest Movie
+
+ SELECT title, country, release_year
+ FROM netflix_titles_nov_2019
+ WHERE type= 'Movie' AND
+ release_year =(
+    SELECT min(release_year)
+    FROM netflix_titles_nov_2019
+    WHERE type= 'Movie');
+
+##Q-3/ Find newest TV Show
+
+ SELECT title, country, release_year
+ FROM netflix_titles_nov_2019
+ WHERE type= 'TV Show' AND
+ release_year = (
+     SELECT max(release_year)
+     FROM netflix_titles_nov_2019
+     WHERE type= 'TV Show');
+
+##Q-4/ Find countries with higest number of movies
+
+ SELECT Country, count(*) as total
+ FROM netflix_titles_nov_2019
+ WHERE country is not NULL AND
+ type= 'Movie'
+ GROUP BY country
+ ORDER BY total DESC
+ Limit 3;
+
+##Q-5/ Find top-3 countries with most content
+
+ SELECT country, count(*) as no_of_content
+ FROM netflix_titles_nov_2019
+ WHERE country is not null 
+ GROUP BY country
+ ORDER BY no_of_content DESC
+ LIMIT 3;
+
+(*WHERE can't process COUNT() or alias but HAVING can)
