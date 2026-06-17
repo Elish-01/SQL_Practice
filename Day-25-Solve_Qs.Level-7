@@ -1,0 +1,88 @@
+#SubQueries
+
+##Q-1:- find most common genre(listed_in)
+
+ SELECT listed_in, count(*) as no_of_genre
+ FROM netflix_titles_nov_2019
+ GROUP BY listed_in
+ ORDER BY no_of_genre DESC
+ LIMIT 1;
+
+##Q-2:- Titles from countries with highest content
+
+ SELECT title, country
+ FROM netflix_titles_nov_2019
+ WHERE country is not NULL
+ AND country= (SELECT country
+   FROM netflix_titles_nov_2019
+   WHERE country is not null
+   GROUP BY country
+   ORDER BY count(*) DESC
+   LIMIT 1);
+
+##Q-3:- Countries with above average no of shows
+
+ SELECT country, count(*) as total
+ FROM netflix_titles_nov_2019
+ WHERE  country is not null
+ GROUP BY country
+ HAVING count(*) > (SELECT avg(country_count)
+  FROM (
+        SELECT count(*) as country_count
+        FROM netflix_titles_nov_2019
+        WHERE country is not NULL
+        GROUP BY country)) ;
+
+##Q-4:- Find movies longer than average duration
+
+ SELECT title, duration
+ FROM netflix_titles_nov_2019
+ WHERE title is not NULL
+ AND type= 'Movie'
+ AND cast(substr(duration, 1, instr(duration, ' ') -1) as integer) > 
+  (SELECT avg(CAST(substr(duration, 1, instr(duration, ' ') -1) as integer)) 
+   FROM netflix_titles_nov_2019
+   WHERE type= 'Movie');
+
+* Values in Duration column were in Text format, so I used CAST function to turn them into Integer.
+
+##Q-5:- Get all content with rating equal to most common rating
+
+ SELECT *
+ FROM netflix_titles_nov_2019
+ WHERE rating=(
+ SELECT rating
+ FROM netflix_titles_nov_2019
+ WHERE rating is not NULL
+ GROUP BY rating
+ ORDER BY count(*) DESC
+ LIMIT 1);
+
+##Q-6:- Find the percentage of movies of the total Content
+
+ SELECT
+   (SELECT count(*) 
+    FROM netflix_titles_nov_2019
+    WHERE type= 'Movie') * 100/
+    (SELECT count(*)
+     FROM netflix_titles_nov_2019) As Movie_percentage;
+
+         OR
+
+SELECT
+ (COUNT(CASE WHEN type= 'Movie' THEN 1 END) * 100)/ 
+ COUNT(*) as Movie_percentage
+FROM netflix_titles_nov_2019;
+
+##Q-7:- Find % of Movies and TV show in one Query
+
+ SELECT
+  (COUNT(CASE WHEN type= 'Movie' THEN 1 END) * 100)/ Count(*) as movie_percentage,
+  (COUNT(CASE WHEN type= 'TV Show' THEN 1 END) * 100)/ Count(*) as TV_Show_percentage
+FROM netflix_titles_nov_2019;
+ 
+
+
+
+
+
