@@ -1,0 +1,46 @@
+#ADVANCED ANALYST THINKING
+
+##Q-1:- Find year with highest number of releases
+
+ SELECT release_year
+ FROM netflix_titles_nov_2019
+ GROUP BY release_year
+ ORDER BY count(*) DESC
+ LIMIT 1;
+
+##Q-2:- Find trend: Movies vs TV Shows count
+
+ SELECT
+  COUNT(CASE WHEN type= 'Movie' THEN 1 END) AS movie_no,
+  COUNT(CASE WHEN type= 'TV Show' THEN 1 END) AS TV_Show_no
+ FROM netflix_titles_nov_2019;
+
+##Q-3:- Which country produces more TV Show than Movie?
+
+ SELECT country,
+  COUNT(CASE WHEN type= 'Movie' THEN 1 END) as movies,
+  COUNT(CASE WHEN type= 'TV Show' THEN 1 END) as TV_Shows
+FROM netflix_titles_nov_2019
+WHERE country is not NULL
+GROUP BY country
+HAVING TV_Shows > movies
+
+##Q-4:- Find % of movies VS TV shows
+
+ SELECT
+    (COUNT(CASE WHEN type= 'Movie' THEN 1 END) * 100.0)/ COUNT(*) as movie_%,
+    (COUNT(CASE WHEN type= 'TV Show' THEN 1 END) * 100.0)/ COUNT(*) as TV_Show_%
+ FROM netflix_titles_nov_2019;
+
+##Q-5:- Find top genre per country(From listed_in column)
+
+ SELECT country, listed_in, count(*) as total
+ FROM netflix_titles_nov_2019 t1
+ WHERE country is not NULL
+ GROUP BY country, listed_in
+ HAVING count(*) = ( SELECT max(cnt)
+                    FROM (
+                          SELECT count(*) as cnt
+                          FROM netflix_titles_nov_2019 t2
+                          WHERE t2.country = t1.country
+                          GROUP BY listed_in));
