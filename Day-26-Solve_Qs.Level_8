@@ -1,0 +1,27 @@
+#CASE + CONDITIONAL LOGIC
+
+##Q-1:- Categorize Content
+        Before 2000 → Old
+        2000 -2015  → Mid
+        After 2015  → New
+
+ SELECT title,
+  CASE
+     WHEN release_year < 2000 THEN 'Old'
+     WHEN release_year BETWEEN 2000 AND 2015 THEN 'Mid'
+     ELSE 'New'
+     END AS category
+ FROM netflix_titles_nov_2019;
+
+
+##Q-2:- Label Content
+        Movie → 'Film'
+        TV Show → 'Series'
+
+ SELECT title,
+       CASE 
+          WHEN type= 'Movie' THEN 'Film'
+          ELSE 'Series'
+          END AS Label
+ FROM netflix_titles_nov_2019;
+
